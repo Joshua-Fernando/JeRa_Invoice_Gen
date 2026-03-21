@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const DEFAULT_ADDRESS = {
     name: 'JeRa',
     subname: 'Jewelry & Fashion Accessories',
+    phone: '+91 98847 76974',
     address: 'FLAT NO. A/5, FIRST FLOOR, A WING, SILVER SPRINGS (CULBAVOUR CHS LTD.) OPP. PHOENIX MARKET CITY, BEHIND HDFC BANK, LBS MARG, KURLA WEST MUMBAI - 400070.',
 };
 
@@ -13,7 +14,7 @@ export default function InvoiceGenerator() {
     const [date, setDate] = useState('');
     const [trackingNumber, setTrackingNumber] = useState('');
     const [addressMode, setAddressMode] = useState('default');
-    const [customAddress, setCustomAddress] = useState({ name: '', subname: '', address: '' });
+    const [customAddress, setCustomAddress] = useState({ name: '', subname: '', phone: '', address: '' });
 
     const fromAddress = addressMode === 'default' ? DEFAULT_ADDRESS : customAddress;
 
@@ -86,12 +87,14 @@ export default function InvoiceGenerator() {
                         <div className="bg-blue-50 border border-blue-200 rounded p-3 text-sm text-gray-700 leading-relaxed">
                             <p className="font-bold">{DEFAULT_ADDRESS.name}</p>
                             <p className="text-gray-600">{DEFAULT_ADDRESS.subname}</p>
+                            <p className="text-gray-600">{DEFAULT_ADDRESS.phone}</p>
                             <p className="text-gray-500 mt-1">{DEFAULT_ADDRESS.address}</p>
                         </div>
                     ) : (
                         <div className="space-y-2">
                             <input type="text" placeholder="Business Name (e.g., JeRa)" value={customAddress.name} onChange={(e) => setCustomAddress({ ...customAddress, name: e.target.value })} className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" />
                             <input type="text" placeholder="Tagline / Sub-name" value={customAddress.subname} onChange={(e) => setCustomAddress({ ...customAddress, subname: e.target.value })} className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" />
+                            <input type="tel" placeholder="Phone Number" value={customAddress.phone} onChange={(e) => setCustomAddress({ ...customAddress, phone: e.target.value })} className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" />
                             <textarea placeholder="Full Address" rows={3} value={customAddress.address} onChange={(e) => setCustomAddress({ ...customAddress, address: e.target.value })} className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none resize-none" />
                         </div>
                     )}
@@ -177,6 +180,7 @@ export default function InvoiceGenerator() {
                                 <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">From</p>
                                 <p className="font-bold text-gray-800">{fromAddress.name || '—'}</p>
                                 {fromAddress.subname && <p className="text-gray-600">{fromAddress.subname}</p>}
+                                {fromAddress.phone && <p className="text-gray-600">{fromAddress.phone}</p>}
                                 {fromAddress.address && <p className="text-gray-500 mt-1 leading-relaxed">{fromAddress.address}</p>}
                             </div>
 
@@ -238,6 +242,10 @@ export default function InvoiceGenerator() {
                             </table>
 
                             <div className="mt-auto">
+                                <div className="flex justify-between items-center border-t border-gray-200 py-2 text-sm text-gray-500">
+                                    <span className="italic">Shipping</span>
+                                    <span><span className="line-through text-gray-400 mr-2">₹100.00</span><span className="font-semibold text-green-600">FREE</span></span>
+                                </div>
                                 <div className="flex justify-between items-center border-t-2 border-gray-800 pt-3">
                                     <span className="text-lg font-bold text-gray-800">Total Amount</span>
                                     <span className="text-2xl font-bold text-gray-900">₹{grandTotal.toFixed(2)}</span>
