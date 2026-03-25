@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 const DEFAULT_ADDRESS = {
     name: 'JeRa',
-    subname: 'Jewelry & Fashion Accessories',
-    phone: '+91 98847 76974',
+    subname: 'Jewellery',
+    phone: '+91 91764 04179 / 98847 76974',
     address: 'FLAT NO. A/5, FIRST FLOOR, A WING, SILVER SPRINGS (CULBAVOUR CHS LTD.) OPP. PHOENIX MARKET CITY, BEHIND HDFC BANK, LBS MARG, KURLA WEST MUMBAI - 400070.',
 };
 
